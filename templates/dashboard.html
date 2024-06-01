@@ -1,0 +1,173 @@
+<!-- Navigation -->
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+<!-- Page Content -->
+{% block content %}
+<div class="container">
+
+  {% if msg %}
+  
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-file-csv"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total Data Tweet</span>
+            <span id="panjangDF" class="info-box-number">Loading...</span>
+        </div>
+    </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-font"></i></span>
+
+            <div class="info-box-content">
+            <span class="info-box-text">Total Kata Unik</span>
+            <span id='allWords' class="info-box-number">Loading...</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+    <!-- /.info-box -->
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-file"></i></span>
+
+            <div class="info-box-content">
+            <span class="info-box-text">Total Stopwords</span>
+            <span id='getStopwords' class="info-box-number">Loading...</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-file"></i></span>
+
+            <div class="info-box-content">
+            <span class="info-box-text">Total Normalisasi Data</span>
+            <span id='normalizationData' class="info-box-number">Loading...</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Distribusi Kelas</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">10 Kata Positif Teratas</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="positiveWordChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">10 Kata Netral Teratas</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="neutralWordChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">10 Kata Terbanyak di Dataset</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">10 Kata Negatif Teratas</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="negativeWordChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.col-md-6 -->
+</div>
+
+
+  {% else %}
+
+  <div class="alert alert-warning" role="alert">
+    Dataset Kosong!!
+  </div>
+
+  {% endif %}
+
+</div>
+<!-- /.container -->
+{% endblock %}

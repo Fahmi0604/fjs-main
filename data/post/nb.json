@@ -1,0 +1,1 @@
+{"model_name": "model.pickle", "tfidf_name": "tfidf.pickle", "data_time": "2022-11-09 23:18:28", "model_reports": {"accuracy_score": 1.0, "precision_score": 0.33, "f1_score": 0.33, "recall_score": 1.0, "cfm": [[1, 0, 0], [0, 0, 0], [0, 0, 0]]}}

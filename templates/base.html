@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %} | TWITTER N</title>
+    <!-- <link href="/static/css/logo-nav.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/logo-nav.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_config.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free-5.15.3/css/all.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/jqvmap/jqvmap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.css') }}">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+       <div class="container navbar">
+
+          <a class="navbar-brand" href="#" style="pointer-events: none; cursor: default;">{{ self.title() }}</a>
+          <!-- <a class="navbar-brand" href="/dashboard">Dashboard</a> -->
+          <div class="navbar-brand">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+               <a class="nav-link" href="/dashboard">Dashboard</a>
+               <a class="nav-link" href="/dataset" onclick="spinner();">Dataset</a>
+               <a class="nav-link" href="/chi-square-fs" onclick="spinner();">Chi Square FS</a>
+               <a class="nav-link" href="/naive-bayes" onclick="spinner();">Naive Bayes</a>
+            </ul>
+          </div>
+
+       </div>
+      </nav>
+    </header>
+    <div class="card card-body mt-5" style="margin-bottom: 10px;">
+    </div>
+    {% block content %}{% endblock %}
+    <div class="loader">
+      <div class="loading"></div>
+    </div>
+
+  </body>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- ChartJS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!-- Sparkline -->
+  <script src="{{ url_for('static', filename='plugins/sparklines/sparkline.js') }}"></script>
+  <!-- JQVMap -->
+  <script src="{{ url_for('static', filename='plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="{{ url_for('static', filename='plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+  <!-- daterangepicker -->
+  <script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+  <!-- Summernote -->
+  <script src="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.js') }}"></script>
+  <!-- overlayScrollbars -->
+  <script src="{{ url_for('static', filename='plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ url_for('static', filename='dist/js/adminlte.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{ url_for('static', filename='dist/js/demo.js') }}"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{{ url_for('static', filename='dist/js/pages/dashboard.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/fontawesome-free-5.15.3/js/all.js') }}"></script>
+  <!-- Chart Values JS -->
+  <script type="text/javascript" src="{{ url_for('static', filename='chart_values.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='nb.js') }}"></script>
+  {% block script %}
+  <script type="text/javascript">
+    function spinner() {
+      document.getElementsByClassName("loader")[0].style.display = "block";
+    }
+  </script>
+  {% endblock %}
+
+</html>
